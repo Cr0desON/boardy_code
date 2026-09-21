@@ -1,0 +1,72 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; background-color: #f9fbfc; }
+main { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+a { color: #154360; text-decoration: none; }
+a:hover { text-decoration: underline; }
+footer { text-align: center; margin-top: 40px; padding-pt: 20px; color: #999; font-size: 14px; }
+
+/* Навигация */
+.main-nav { display: flex; justify-content: space-between; background-color: #154360; color: #ffffff; }
+.nav-left, .nav-right { display: flex; align-items: center; }
+.main-nav a { color: #ffffff; text-decoration: none; padding: 15px 20px; transition: background-color 0.2s; }
+.nav-brand { font-size: 1.4rem; font-weight: bold; }
+.nav-item:hover { background-color: rgba(255, 255, 255, 0.1); }
+.nav-btn-dark { background-color: #0E2F44; }
+.nav-greeting { padding: 15px 20px; color: rgba(255, 255, 255, 0.8); }
+
+/* Карточки постов */
+.page-title { color: #154360; margin-bottom: 25px; font-size: 28px; }
+.posts-list { display: flex; flex-direction: column; gap: 15px; }
+.post-card { background: #ffffff; border: 1px solid #e1e8ed; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); margin-bottom: 20px; }
+.post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.post-author { font-weight: bold; color: #154360; font-size: 16px; }
+.post-time { color: #95a5a6; font-size: 14px; }
+.post-title { font-size: 22px; margin-bottom: 10px; }
+.post-body { color: #333; font-size: 16px; line-height: 1.6; white-space: pre-line; }
+
+/* Формы и карточки авторизации */
+.auth-card { background: #ffffff; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #e1e8ed; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #555; }
+.form-control { width: 100%; padding: 12px; border: 1px solid #bdc3c7; border-radius: 4px; font-size: 15px; outline: none; }
+.form-control:focus { border-color: #154360; }
+textarea.form-control { min-height: 120px; resize: vertical; }
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    font-family: inherit;
+    line-height: normal;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.btn-primary { background: #154360; color: white; }
+.btn-primary:hover { background: #0E2F44; text-decoration: none; }
+.btn-danger { background: #e74c3c; color: white; }
+.btn-danger:hover { background: #c0392b; }
+.btn-secondary { background: #7f8c8d; color: white; }
+
+/* Комментарии */
+.comments-section { margin-top: 30px; }
+.comment-card { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 10px; }
+
+/* Уведомления и ошибки */
+.alert { padding: 15px; border-radius: 4px; margin-bottom: 20px; }
+.alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.error-text { color: #e74c3c; font-size: 13px; margin-top: 5px; }
+
+.pagination { display: flex; gap: 6px; list-style: none; align-items: center; }
+.pagination svg { width: 18px; height: 18px; }
+.pagination a, .pagination span {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 32px; height: 32px; padding: 0 8px;
+    border-radius: 4px; color: #154360;
+}
+.pagination a:hover { background: #e1e8ed; text-decoration: none; }
+.pagination .active span { background: #154360; color: #fff; }
