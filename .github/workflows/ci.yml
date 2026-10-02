@@ -63,16 +63,24 @@ jobs:
       - name: Start stack
         run: |
           docker compose up -d
-          # права на storage-volume (он пустой на чистой машине)
           docker compose exec -T laravel sh -c \
             "mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs && chmod -R 777 storage bootstrap/cache"
-          for i in {1..30}; do
-            curl -fs http://localhost/health | grep -q '"ok":true' && \
-            curl -fs http://localhost/api/health | grep -q '"ok":true' && break
-            sleep 3
-          done
+
+          # ключи Passport нужны FastAPI при старте
           docker compose exec -T laravel php artisan passport:keys --force
           docker compose restart fastapi
+
+          # ждём, пока оба сервиса ответят
+          for i in {1..30}; do
+            if curl -fs http://localhost/health | grep -q '"ok":true' && \
+               curl -fs http://localhost/api/health | grep -q '"ok":true'; then
+              echo "stack is up"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "stack did not come up in time"
+          exit 1
 
       - name: Smoke endpoints
         run: |
