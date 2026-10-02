@@ -118,3 +118,7 @@ async def get_comments():
     for com in comments:
         com['created_at'] = str(com['created_at'])
     return {'comments': comments, 'count': len(comments)}
+
+@app.get("/api/health")
+def health():
+    return {"ok": True}

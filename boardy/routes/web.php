@@ -30,5 +30,7 @@ Route::get('/oauth/callback', function () {
     return view('oauth.callback');
 });
 
+# Laravel — routes/web.php
+Route::get('/health', fn () => response()->json(['ok' => true]));
 
 require __DIR__.'/auth.php';

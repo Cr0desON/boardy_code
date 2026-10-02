@@ -11,3 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: PHP syntax check
+        run: |
+          find src -name "*.php" -print0 | \
+          xargs -0 -n1 php -l
+      - name: Python syntax check
+        run: |
+          python -m compileall api/ -q
+

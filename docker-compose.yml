@@ -1,3 +1,4 @@
+name: boardy
 services:
 
   nginx:
