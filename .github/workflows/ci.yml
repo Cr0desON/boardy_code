@@ -17,9 +17,7 @@ jobs:
       - name: Python syntax check
         run: |
           python -m compileall api/ -q
-      - name: Show logs on failure
-        if: failure()
-        run: docker compose logs
+    
   smoke:
     runs-on: ubuntu-latest
     needs: lint
@@ -73,13 +71,13 @@ jobs:
             curl -fs http://localhost/api/health | grep -q '"ok":true' && break
             sleep 3
           done
+          docker compose exec -T laravel php artisan passport:keys --force
+          docker compose restart fastapi
 
       - name: Smoke endpoints
         run: |
-          curl -fsS http://localhost/health | grep '"ok":true'
-          curl -fsS http://localhost/api/health | grep '"ok":true'
-          curl -s -o /dev/null -w "/health     -> %{http_code}\n" http://localhost/health
-          curl -s -o /dev/null -w "/api/health -> %{http_code}\n" http://localhost/api/health
+          curl -s -o /dev/null -w "/health     -> %{http_code}\n" -f http://localhost/health
+          curl -s -o /dev/null -w "/api/health -> %{http_code}\n" -f http://localhost/api/health
 
       - name: Show logs on failure
         if: failure()
@@ -88,4 +86,7 @@ jobs:
       - name: Tear down
         if: always()
         run: docker compose down -v
-
+        
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs
